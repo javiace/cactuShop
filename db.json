@@ -4,6 +4,17 @@
                "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", 
                "price":24,
                "img":"https://raw.githubusercontent.com/javiace/cactuShop/master/static/Ariocarpus_retusus.jpg"},
+               {"id":5,
+                "title":"Ariocarpus retusus", 
+                "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", 
+                "price":70,
+                "img": "https://raw.githubusercontent.com/javiace/cactuShop/master/static/Ariocarpus_retusus.jpg"}
+            ],
+    "cactus":[{"id":1,
+               "title":"Coryphantha palmerii", 
+               "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", 
+               "price":24,
+               "img":"https://raw.githubusercontent.com/javiace/cactuShop/master/static/Ariocarpus_retusus.jpg"},
                {"id":2,
                 "title":"Coryphantha sp", 
                 "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", 
@@ -18,8 +29,9 @@
                 "title":"Echinocereus pentalophus", 
                 "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", 
                 "price":24,
-                "img":"https://raw.githubusercontent.com/javiace/cactuShop/master/static/Echinocereus_pentalophus.jpg"},
-               {"id":5,
+                "img":"https://raw.githubusercontent.com/javiace/cactuShop/master/static/Echinocereus_pentalophus.jpg"}
+             ],
+    "suculentas":[{"id":5,
                 "title":"Ariocarpus retusus", 
                 "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", 
                 "price":70,
@@ -38,6 +50,5 @@
                 "title":"Discocactus bueneckerii", 
                 "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",
                 "price": 30,
-                "img": "https://raw.githubusercontent.com/javiace/cactuShop/master/static/Discocactus_bueneckerii.jpg"}
-            ]
+                "img": "https://raw.githubusercontent.com/javiace/cactuShop/master/static/Discocactus_bueneckerii.jpg"}]
 }
