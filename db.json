@@ -1,9 +1,9 @@
 {
     "prods":[ {"id":1,
-               "title":"Winter body", 
+               "title":"Coryphantha palmerii", 
                "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", 
-               "price":110,
-               "img":"Item1"},
+               "price":24,
+               "img":"https://raw.githubusercontent.com/javiace/cactuShop/master/static/Ariocarpus_retusus.jpg"},
                {"id":2,
                 "title":"Adidas", 
                 "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", 
