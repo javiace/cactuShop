@@ -30,9 +30,20 @@ export const addQuantity=(id)=>{
     }
 }
 
-export const loadProds=(items)=>{
+//load products cat
+export const loadProds=(items,filter)=>{
+    console.log('INIT cartActions.loadProds')
+    console.log('items=', items, 'filter=', filter)
     return {
         type: LOAD_PRODS,
-        payload: items
+        payload: {items:items,
+                  filter:filter}
+    }
+}
+
+//change message
+export const setMessage =(payload) => {
+    return {type:'SET_MESSAGE',
+           payload: payload  
     }
 }

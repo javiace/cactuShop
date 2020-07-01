@@ -11,7 +11,8 @@
     width: 300px;
 }
 .card .card-image .card-title{
-    color: black;
+    color: white;
+    text-align: center;
     font-weight: 400
 }
 .cart{
@@ -34,4 +35,14 @@
 }
 .item-desc{
     align-self:center;
+}
+
+.bgmenu{
+    background-color: #343a40;
+    padding-left: 0px;
+}
+
+.bgmenu:hover{
+    background-color: darkgray;
+    color: white;
 }

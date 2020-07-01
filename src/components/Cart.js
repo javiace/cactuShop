@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { removeItem,addQuantity,subtractQuantity} from './actions/cartActions'
+
+import { removeItem,addQuantity,subtractQuantity,setMessage} from './actions/cartActions'
 import Recipe from './Recipe'
 class Cart extends Component{
 
@@ -17,11 +18,19 @@ class Cart extends Component{
     handleSubtractQuantity = (id)=>{
         this.props.subtractQuantity(id);
     }
+    
+    componentDidMount =() =>{
+        if(!this.props.addedItems.length)
+            this.props.setMessage({variant: 'warning', text:' Agregue productos para continuar'})
+    }
+
     render(){
-              
-        let addedItems = this.props.items.length ?
+        console.log('INIT Cart.render')
+        console.log(this.props)     
+
+        let addedItems = this.props.addedItems.length ?
             (  
-                this.props.items.map(item=>{
+                this.props.addedItems.map(item=>{
                     return(
                        
                         <li className="collection-item avatar" key={item.id}>
@@ -32,7 +41,7 @@ class Cart extends Component{
                                     <div className="item-desc">
                                         <span className="title">{item.title}</span>
                                         <p>{item.desc}</p>
-                                        <p><b>Precio: {item.price}$</b></p> 
+                                        <p><b>Precio: ${item.price}</b></p> 
                                         <p>
                                             <b>Cantidad: {item.quantity}</b> 
                                         </p>
@@ -40,7 +49,7 @@ class Cart extends Component{
                                             <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleAddQuantity(item.id)}}>arrow_drop_up</i></Link>
                                             <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleSubtractQuantity(item.id)}}>arrow_drop_down</i></Link>
                                         </div>
-                                        <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item.id)}}>Remove</button>
+                                        <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item.id)}}>Quitar</button>
                                     </div>
                                     
                                 </li>
@@ -68,16 +77,18 @@ class Cart extends Component{
 
 
 const mapStateToProps = (state)=>{
+    console.log('INIT Home.mapStateToProps')
+    console.log('state=',state)
     return{
-        items: state.addedItems,
-        //addedItems: state.addedItems
+        ...state 
     }
 }
 const mapDispatchToProps = (dispatch)=>{
     return{
         removeItem: (id)=>{dispatch(removeItem(id))},
         addQuantity: (id)=>{dispatch(addQuantity(id))},
-        subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
+        subtractQuantity: (id)=>{dispatch(subtractQuantity(id))},
+        setMessage: (payload)=>{dispatch(setMessage(payload))}
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Cart)

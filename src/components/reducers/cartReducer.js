@@ -1,44 +1,51 @@
-import Item1 from '../../images/item1.jpg'
-import Item2 from '../../images/item2.jpg'
-import Item3 from '../../images/item3.jpg'
-import Item4 from '../../images/item4.jpg'
-import Item5 from '../../images/item5.jpg'
-import Item6 from '../../images/item6.jpg'
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING,LOAD_PRODS } from '../actions/action-types/cart-actions'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING,LOAD_PRODS, SET_MESSAGE } from '../actions/action-types/cart-actions'
 
 
 const initState = {
-    items: [
-       /* {id:1,title:'Winter body', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:110,img:Item1},
-        {id:2,title:'Adidas', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:80,img: Item2},
-        {id:3,title:'Vans', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",price:120,img: Item3},
-        {id:4,title:'White', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:260,img:Item4},
-        {id:5,title:'Cropped-sho', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:160,img: Item5},
-        {id:6,title:'Blues', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",price:90,img: Item6}*/
-    ],
+    items: [],
+    filter: null,
     addedItems:[],
-    total: 0
-
+    total: 0,
+    msg:{variant: 'primary', text:'¡Bienvenido!'}
 }
 const cartReducer= (state = initState,action)=>{
+
+    console.log('INIT cartReducer')
+    console.log('state=', state, 'action=', action)
    
-    //INSIDE HOME COMPONENT
-    if(action.type == LOAD_PRODS){
+    if(action.type === SET_MESSAGE){
         return{
-            ...state,
-            items: action.payload
+            items: state.items,
+            filter: state.filter,
+            addedItems: state.addedItems,
+            total: state.total,
+            msg: action.payload
+        }
+    }
+    //INSIDE HOME COMPONENT
+    if(action.type === LOAD_PRODS){
+        return{
+            items: action.payload.items,
+            filter: action.payload.filter,
+            addedItems: state.addedItems,
+            total: state.total,
+            msg: state.msg
         }
     }
     if(action.type === ADD_TO_CART){
+        console.log('INIT ADD_TO_CART')
           let addedItem = state.items.find(item=> item.id === action.id)
           //check if the action id exists in the addedItems
          let existed_item= state.addedItems.find(item=> action.id === item.id)
          if(existed_item)
-         {
+         {  
             addedItem.quantity += 1 
              return{
-                ...state,
-                 total: state.total + addedItem.price 
+                items: state.items,
+                filter: state.filter,
+                addedItems: state.addedItems,
+                total: state.total + addedItem.price,
+                msg: {variant: 'success', text:'Cantidad de ['+addedItem.title+'] actualizada. Total en carrito:'+addedItem.quantity} 
                   }
         }
          else{
@@ -47,9 +54,11 @@ const cartReducer= (state = initState,action)=>{
             let newTotal = state.total + addedItem.price 
             
             return{
-                ...state,
+                items: state.items,
+                filter: state.filter,
                 addedItems: [...state.addedItems, addedItem],
-                total : newTotal
+                total : newTotal,
+                msg: {variant: 'success', text:'Se agregó ['+addedItem.title+'] al carrito.'} 
             }
             
         }
@@ -62,9 +71,11 @@ const cartReducer= (state = initState,action)=>{
         let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity )
         console.log(itemToRemove)
         return{
-            ...state,
+            items: state.items,
+            filter: state.filter,
             addedItems: new_items,
-            total: newTotal
+            total: newTotal,
+            msg: state.msg
         }
     }
     //INSIDE CART COMPONENT
@@ -73,8 +84,11 @@ const cartReducer= (state = initState,action)=>{
           addedItem.quantity += 1 
           let newTotal = state.total + addedItem.price
           return{
-              ...state,
-              total: newTotal
+              items: state.items,
+              filter: state.filter,
+              addedItems: state.addedItems,
+              total: newTotal,
+              msg: state.msg
           }
     }
     if(action.type=== SUB_QUANTITY){  
@@ -84,17 +98,22 @@ const cartReducer= (state = initState,action)=>{
             let new_items = state.addedItems.filter(item=>item.id !== action.id)
             let newTotal = state.total - addedItem.price
             return{
-                ...state,
+                items: state.items,
+                filter: state.filter,
                 addedItems: new_items,
-                total: newTotal
+                total: newTotal,
+                msg: state.msg
             }
         }
         else {
             addedItem.quantity -= 1
             let newTotal = state.total - addedItem.price
             return{
-                ...state,
-                total: newTotal
+                items: state.items,
+                filter: state.filter,
+                addedItems: state.addedItems,
+                total: newTotal,
+                msg: state.msg
             }
         }
         
@@ -102,21 +121,27 @@ const cartReducer= (state = initState,action)=>{
 
     if(action.type=== ADD_SHIPPING){
           return{
-              ...state,
-              total: state.total + 6
+                items: state.items,
+                filter: state.filter,
+                addedItems: state.addedItems,
+                total: state.total + 6,
+                msg: state.msg
           }
     }
 
     if(action.type=== 'SUB_SHIPPING'){
         return{
-            ...state,
-            total: state.total - 6
+            items: state.items,
+            filter: state.filter,
+            addedItems: state.addedItems,
+            total: state.total - 6,
+            msg: state.msg
         }
   }
     
-  else{
+  
     return state
-    }
+    
     
 }
 
