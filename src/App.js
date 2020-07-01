@@ -11,8 +11,8 @@ class App extends Component {
        <BrowserRouter>
               <NavbarCS/>
               <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route exact path="/cart" component={Cart}/>
+                <Route exact path="/cactuShop/" component={Home}/>
+                <Route exact path="/cactuShop/cart" component={Cart}/>
               </Switch>
                 
             

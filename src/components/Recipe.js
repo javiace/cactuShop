@@ -23,7 +23,7 @@ class Recipe extends Component{
             this.props.setMessage({variant: 'danger', text:'Debe llenar todos los datos del cliente'})
         else{
             alert('Gracias por su compra. En breve recibirá un correo con la confiación de su peidio')
-            window.location.href = "/"
+            window.location.href = "/cactuShop/"
             //window.location.reload(true); 
         }
 

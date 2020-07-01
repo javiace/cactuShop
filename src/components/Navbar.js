@@ -35,19 +35,19 @@ class NavbarCS extends Component{
     return(
       <div>
       <Navbar bg="dark" variant="dark">
-      <Navbar.Brand><Link to="/">CactuShop</Link></Navbar.Brand>
+      <Navbar.Brand><Link to="/cactuShop/">CactuShop</Link></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav"></Navbar.Collapse>
       <Nav >
       <NavDropdown title="Catálogo" className="bgmenu" id="basic-navbar-nav">
-        <NavDropdown.Item onClick={()=>{this.setProdFilter('cactus')}}><Link to="/" className="bgmenu">Cactus</Link></NavDropdown.Item>
+        <NavDropdown.Item onClick={()=>{this.setProdFilter('cactus')}}><Link to="/cactuShop/" className="bgmenu">Cactus</Link></NavDropdown.Item>
         <NavDropdown.Divider/>
-        <NavDropdown.Item onClick={()=>{this.setProdFilter('suculentas')}}><Link to="/" className="bgmenu">Suculentas</Link></NavDropdown.Item>
+        <NavDropdown.Item onClick={()=>{this.setProdFilter('suculentas')}}><Link to="/cactuShop/" className="bgmenu">Suculentas</Link></NavDropdown.Item>
         <NavDropdown.Divider/>
-        <NavDropdown.Item onClick={()=>{this.setProdFilter('accesorios')}}><Link to="/" className="bgmenu">Accesorios</Link></NavDropdown.Item>
+        <NavDropdown.Item onClick={()=>{this.setProdFilter('accesorios')}}><Link to="/cactuShop/" className="bgmenu">Accesorios</Link></NavDropdown.Item>
       </NavDropdown>
       </Nav>
-      <Nav><Link to="/cart" className="bgmenu">Mi carrito <i class="fas fa-shopping-cart"></i></Link></Nav>
+      <Nav><Link to="/cactuShop/cart" className="bgmenu">Mi carrito <i class="fas fa-shopping-cart"></i></Link></Nav>
       </Navbar>
       <Msg msg={{variant:'',text:''}}/>
       <Msg msg={this.props.msg} onCloseDo={this.props.setMessage}/>
